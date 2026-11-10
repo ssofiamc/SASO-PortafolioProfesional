@@ -161,6 +161,8 @@ if (idCardScene && idCard) {
   let pointerStartAngle = 0;
   let cardStartAngle = 0;
   let previousMoveTime = 0;
+  let dragMoved = false;
+  let suppressClick = false;
 
   const clampAngle = (value) => Math.max(-55, Math.min(55, value));
   const pointerAngle = (event) => {
@@ -176,8 +178,8 @@ if (idCardScene && idCard) {
   const animateSwing = (time) => {
     const delta = Math.min((time - previousMoveTime) / 1000, 0.032);
     previousMoveTime = time;
-    angularVelocity += -600 * Math.sin(angle * (Math.PI / 180)) * delta;
-    angularVelocity *= Math.exp(-3.4 * delta);
+    angularVelocity += -90 * Math.sin(angle * (Math.PI / 180)) * delta;
+    angularVelocity *= Math.exp(-5.4 * delta);
     setAngle(angle + angularVelocity * delta);
 
     if (Math.abs(angle) < 0.08 && Math.abs(angularVelocity) < 0.5) {
@@ -197,6 +199,7 @@ if (idCardScene && idCard) {
   const releaseCard = (event) => {
     if (event.pointerId !== activePointer) return;
     activePointer = null;
+    suppressClick = dragMoved;
     idCard.classList.remove("is-dragging");
     startSwing();
   };
@@ -210,6 +213,8 @@ if (idCardScene && idCard) {
     activePointer = event.pointerId;
     pointerStartAngle = pointerAngle(event);
     cardStartAngle = angle;
+    dragMoved = false;
+    suppressClick = false;
     angularVelocity = 0;
     previousMoveTime = performance.now();
     idCard.classList.add("is-dragging");
@@ -219,7 +224,9 @@ if (idCardScene && idCard) {
 
   idCard.addEventListener("pointermove", (event) => {
     if (event.pointerId !== activePointer) return;
-    const nextAngle = clampAngle(cardStartAngle + pointerAngle(event) - pointerStartAngle);
+    const pointerDelta = pointerAngle(event) - pointerStartAngle;
+    if (Math.abs(pointerDelta) > 1) dragMoved = true;
+    const nextAngle = clampAngle(cardStartAngle - pointerDelta);
     const now = performance.now();
     const delta = Math.max((now - previousMoveTime) / 1000, 0.001);
     angularVelocity = Math.max(-120, Math.min(120, (nextAngle - angle) / delta));
@@ -230,10 +237,25 @@ if (idCardScene && idCard) {
   idCard.addEventListener("pointerup", releaseCard);
   idCard.addEventListener("pointercancel", releaseCard);
   idCard.addEventListener("lostpointercapture", releaseCard);
+  idCard.addEventListener("click", (event) => {
+    if (suppressClick && event.detail > 0) {
+      event.preventDefault();
+      suppressClick = false;
+      return;
+    }
+    suppressClick = false;
+    const isFlipped = idCard.classList.toggle("is-flipped");
+    idCard.setAttribute(
+      "aria-label",
+      isFlipped
+        ? "Reverso del carné. Haz clic para volver al retrato."
+        : "Carné con tu foto al frente y tu tarjeta al reverso. Arrastra para balancearlo, haz clic para girarlo o usa las flechas del teclado."
+    );
+  });
   idCard.addEventListener("keydown", (event) => {
     if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
     event.preventDefault();
-    angularVelocity += event.key === "ArrowLeft" ? -150 : 150;
+    angularVelocity += event.key === "ArrowLeft" ? 150 : -150;
     startSwing();
   });
 }

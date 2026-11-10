@@ -60,14 +60,19 @@
         <div class="hero-visual reveal reveal-delay">
           <div class="id-card-scene" data-id-card-scene>
             <span class="id-card-anchor" aria-hidden="true"></span>
-            <button class="id-card-hanger" type="button" aria-label="Carné con tu fotografía. Arrastra para balancearlo o usa las flechas del teclado." aria-keyshortcuts="ArrowLeft ArrowRight">
+            <button class="id-card-hanger" type="button" aria-label="Carné con tu foto al frente y tu tarjeta al reverso. Arrastra para balancearlo, haz clic para girarlo o usa las flechas del teclado." aria-keyshortcuts="ArrowLeft ArrowRight">
               <span class="id-card-ribbon" aria-hidden="true"></span>
               <span class="id-card-frame">
-                <img src="assets/images/brand/Selfie.jpeg" alt="Retrato de Sara Sofia Moreno Castro" width="648" fetchpriority="high">
+                <span class="id-card-face id-card-face-front">
+                  <img src="assets/images/brand/Selfie.jpeg" alt="Retrato de Sara Sofia Moreno Castro" width="648" fetchpriority="high">
+                </span>
+                <span class="id-card-face id-card-face-back" aria-hidden="true">
+                  <img src="assets/images/brand/Tarjeta.png" alt="" width="285" height="506">
+                </span>
               </span>
             </button>
           </div>
-          <p class="id-card-hint">Arrastra para balancear <span aria-hidden="true">↔</span></p>
+          <p class="id-card-hint">Arrastra para balancear · haz clic para girar <span aria-hidden="true">↔</span></p>
         </div>
       </div>
       <div class="hero-bottom container" aria-hidden="true">
