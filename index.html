@@ -10,7 +10,7 @@
   <meta property="og:description" content="Diseño, UX/UI y experiencias multimedia de Sara Sofia Moreno Castro.">
   <meta property="og:image" content="assets/images/brand/saso-cover.jpg">
   <title>SASO — Portafolio profesional | Sara Sofia Moreno Castro</title>
-  <link rel="icon" type="image/svg+xml" href="assets/images/brand/favicon.svg">
+  <link rel="icon" type="image/png" href="assets/images/brand/Favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -23,8 +23,7 @@
   <header class="site-header" id="inicio">
     <div class="header-inner container">
       <a class="brand" href="#inicio" aria-label="SASO, ir al inicio">
-        <span class="brand-mark" aria-hidden="true">SA<span>SO</span></span>
-        <span class="brand-caption">PORTAFOLIO<br>PROFESIONAL</span>
+        <img class="brand-logo" src="assets/images/brand/Logo.png" alt="">
       </a>
 
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
@@ -94,13 +93,25 @@
         </div>
 
         <div class="project-grid">
-          <button class="project-card project-card-wide reveal" type="button" data-project="jugos" style="--project-accent:#f4a04f" aria-haspopup="dialog">
+          <button class="project-card project-card-feature reveal" type="button" data-project="cacciatori" style="--project-accent:#e31b27" aria-haspopup="dialog">
+            <span class="project-image">
+              <img src="assets/images/projects/universo-cacciatori/portada.jpg" alt="Portada de la creación del universo multimedia Cacciatori y Yomi Studio" loading="lazy" width="1100" height="780">
+              <span class="project-open" aria-hidden="true">↗</span>
+            </span>
+            <span class="project-info">
+              <span class="project-index">01 <i> / TRANSMEDIA</i></span>
+              <span class="project-title">Universo<br>Cacciatori</span>
+              <span class="project-category">Ingeniería en Multimedia</span>
+            </span>
+          </button>
+
+          <button class="project-card reveal" type="button" data-project="jugos" style="--project-accent:#f4a04f" aria-haspopup="dialog">
             <span class="project-image">
               <img src="assets/images/projects/jugos/portada.jpg" alt="Portada del proyecto Jugos Naturales y Medicinales" loading="lazy" width="1100" height="780">
               <span class="project-open" aria-hidden="true">↗</span>
             </span>
             <span class="project-info">
-              <span class="project-index">01 <i> / UX · UI</i></span>
+              <span class="project-index">02 <i> / UX · UI</i></span>
               <span class="project-title">Jugos Naturales<br>y Medicinales</span>
               <span class="project-category">Usabilidad y accesibilidad</span>
             </span>
@@ -112,7 +123,7 @@
               <span class="project-open" aria-hidden="true">↗</span>
             </span>
             <span class="project-info">
-              <span class="project-index">02 <i> / EDITORIAL</i></span>
+              <span class="project-index">03 <i> / EDITORIAL</i></span>
               <span class="project-title">Dossier de<br>Ventas</span>
               <span class="project-category">Producción multimedia</span>
             </span>
@@ -124,7 +135,7 @@
               <span class="project-open" aria-hidden="true">↗</span>
             </span>
             <span class="project-info">
-              <span class="project-index">03 <i> / WEB</i></span>
+              <span class="project-index">04 <i> / WEB</i></span>
               <span class="project-title">Mr. Burguer<br>Good</span>
               <span class="project-category">Diseño y desarrollo web</span>
             </span>
@@ -136,21 +147,9 @@
               <span class="project-open" aria-hidden="true">↗</span>
             </span>
             <span class="project-info">
-              <span class="project-index">04 <i> / AUDIOVISUAL</i></span>
+              <span class="project-index">05 <i> / AUDIOVISUAL</i></span>
               <span class="project-title">La Sustancia</span>
               <span class="project-category">Edición de audio y video</span>
-            </span>
-          </button>
-
-          <button class="project-card project-card-feature reveal" type="button" data-project="cacciatori" style="--project-accent:#e31b27" aria-haspopup="dialog">
-            <span class="project-image">
-              <img src="assets/images/projects/universo-cacciatori/portada.jpg" alt="Portada de la creación del universo multimedia Cacciatori y Yomi Studio" loading="lazy" width="1100" height="780">
-              <span class="project-open" aria-hidden="true">↗</span>
-            </span>
-            <span class="project-info">
-              <span class="project-index">05 <i> / TRANSMEDIA</i></span>
-              <span class="project-title">Universo<br>Cacciatori</span>
-              <span class="project-category">Ingeniería en Multimedia</span>
             </span>
           </button>
         </div>
@@ -269,7 +268,9 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <a class="footer-brand" href="#inicio">SA<span>SO</span></a>
+      <a class="footer-brand" href="#inicio" aria-label="SASO, ir al inicio">
+        <img src="assets/images/brand/Logo.png" alt="">
+      </a>
       <p>Diseñado con intención · Sara Sofia Moreno Castro</p>
       <a class="back-top" href="#inicio">VOLVER ARRIBA ↑</a>
       <small>© <span id="current-year">2026</span> SASO. Todos los derechos reservados.</small>
