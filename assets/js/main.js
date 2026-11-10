@@ -12,10 +12,10 @@ const projects = {
     accent: "#f4a04f",
     tags: ["UX/UI", "Usabilidad", "Accesibilidad", "Prototipado"],
     gallery: [
-      { file: "Portada.jpg", label: "Portada del proyecto" },
-      { file: "Analisis.jpg", label: "01 · Análisis" },
-      { file: "Desarrollo.jpg", label: "02 · Desarrollo" },
-      { file: "Resultado.jpg", label: "03 · Resultado" }
+      { file: "Portada.png", label: "Portada del proyecto" },
+      { file: "Analisis.png", label: "01 · Análisis" },
+      { file: "Desarrollo.png", label: "02 · Desarrollo" },
+      { file: "Resultado.png", label: "03 · Resultado" }
     ],
     description: "Análisis y propuesta de mejora de una aplicación desarrollada por InnovaSoft Apps, disponible en Google Play Store, cuyo propósito es ofrecer recetas de jugos naturales con propiedades medicinales según las preferencias y necesidades del usuario.",
     analysis: "La aplicación presentaba dificultades de organización, jerarquía visual y navegación. La ausencia de búsqueda y filtrado, los bloques extensos de texto, la poca separación entre elementos y la falta de consistencia entre pantallas afectaban la consulta de las recetas.",
@@ -30,10 +30,10 @@ const projects = {
     accent: "#a40f19",
     tags: ["Diseño editorial", "Identidad visual", "Narrativa", "Flipbook"],
     gallery: [
-      { file: "Portada.jpg", label: "Portada del proyecto" },
-      { file: "Analisis.jpg", label: "01 · Análisis" },
-      { file: "Desarrollo.jpg", label: "02 · Desarrollo" },
-      { file: "Resultado.jpg", label: "03 · Resultado" }
+      { file: "Portada.png", label: "Portada del proyecto" },
+      { file: "Analisis.png", label: "01 · Análisis" },
+      { file: "Desarrollo.png", label: "02 · Desarrollo" },
+      { file: "Resultado.png", label: "03 · Resultado" }
     ],
     description: "Diseño de una pieza editorial para presentar el proyecto audiovisual Cacciatori y comunicar sus aspectos principales de forma clara, visual y atractiva. El dossier reúne identidad, concepto, público, personajes, narrativa y marketing dentro de una misma propuesta.",
     analysis: "La investigación se centró en comprender el universo de terror psicológico de Cacciatori, su público y los referentes que definen su atmósfera. El concepto se construye desde el contraste entre la elegancia de la alta cocina y el horror, que evoluciona progresivamente del orden al caos. El público definido corresponde a adultos jóvenes de 18 a 35 años.",
@@ -48,10 +48,10 @@ const projects = {
     accent: "#efc31e",
     tags: ["Diseño web", "HTML", "CSS", "JavaScript", "GitHub"],
     gallery: [
-      { file: "Portada.jpg", label: "Portada del proyecto" },
-      { file: "Analisis.jpg", label: "01 · Análisis" },
-      { file: "Desarrollo.jpg", label: "02 · Desarrollo" },
-      { file: "Resultado.jpg", label: "03 · Resultado" }
+      { file: "Portada.png", label: "Portada del proyecto" },
+      { file: "Analisis.png", label: "01 · Análisis" },
+      { file: "Desarrollo.png", label: "02 · Desarrollo" },
+      { file: "Resultado.png", label: "03 · Resultado" }
     ],
     description: "Diseño y desarrollo web para una cadena ficticia de restaurantes de hamburguesas. La propuesta construye una presencia digital para la marca e integra la presentación de productos, información de locales y opciones de pedido.",
     analysis: "El concepto del sitio debía tener una estética moderna, llamativa y dinámica, capaz de destacar los productos y transmitir la personalidad de la marca. Cada página debía conservar una identidad gráfica coherente y cumplir una función específica.",
@@ -66,10 +66,10 @@ const projects = {
     accent: "#b31c98",
     tags: ["Edición", "Montaje", "Tipografía", "Audio"],
     gallery: [
-      { file: "Portada.jpg", label: "Portada del proyecto" },
-      { file: "Analisis.jpg", label: "01 · Análisis" },
-      { file: "Desarrollo.jpg", label: "02 · Desarrollo" },
-      { file: "Resultado.jpg", label: "03 · Resultado" }
+      { file: "Portada.png", label: "Portada del proyecto" },
+      { file: "Analisis.png", label: "01 · Análisis" },
+      { file: "Desarrollo.png", label: "02 · Desarrollo" },
+      { file: "Resultado.png", label: "03 · Resultado" }
     ],
     description: "Creación de un tráiler a partir de la película La Sustancia. El reto consistía en condensar su universo en una pieza audiovisual que despertara curiosidad y anticipara una atmósfera inquietante sin revelar toda la historia.",
     analysis: "La propuesta toma como punto de partida el contraste entre la estética de la belleza idealizada y las imágenes de transformación y horror corporal. El público objetivo corresponde a espectadores interesados en el cine de terror, el horror corporal y las propuestas audiovisuales con tensión psicológica y reflexiones sobre belleza e identidad.",
@@ -84,10 +84,10 @@ const projects = {
     accent: "#e31b27",
     tags: ["Transmedia", "Narrativa", "Videojuego", "Identidad visual"],
     gallery: [
-      { file: "Portada.jpg", label: "Portada del proyecto" },
-      { file: "Analisis.jpg", label: "01 · Análisis" },
-      { file: "Desarrollo.jpg", label: "02 · Desarrollo" },
-      { file: "Resultado.jpg", label: "03 · Resultado" }
+      { file: "Portada.png", label: "Portada del proyecto" },
+      { file: "Analisis.png", label: "01 · Análisis" },
+      { file: "Desarrollo.png", label: "02 · Desarrollo" },
+      { file: "Resultado.png", label: "03 · Resultado" }
     ],
     description: "Desarrollo de un universo narrativo de ficción propio centrado en el terror psicológico. Cacciatori tomó como inspiración la leyenda urbana bogotana de L’Angolo di Gigi, asociada a rumores sobre el uso de carne humana en un restaurante italiano.",
     analysis: "El reto consistía en construir una historia coherente, definir sus personajes y establecer una identidad visual capaz de conectar diferentes productos y experiencias multimedia. El público objetivo se definió como adultos jóvenes de 18 a 35 años interesados en terror psicológico, suspenso, videojuegos, historias basadas en crímenes reales, leyendas urbanas y narrativas transmedia.",
