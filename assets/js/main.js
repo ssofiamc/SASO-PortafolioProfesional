@@ -149,6 +149,95 @@ if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-mot
   revealItems.forEach((item) => item.classList.add("is-visible"));
 }
 
+// Balanceo físico de la credencial del hero.
+const idCardScene = document.querySelector("[data-id-card-scene]");
+const idCard = idCardScene?.querySelector(".id-card-hanger");
+
+if (idCardScene && idCard) {
+  let angle = 0;
+  let angularVelocity = 0;
+  let animationFrame = 0;
+  let activePointer = null;
+  let pointerStartAngle = 0;
+  let cardStartAngle = 0;
+  let previousMoveTime = 0;
+
+  const clampAngle = (value) => Math.max(-55, Math.min(55, value));
+  const pointerAngle = (event) => {
+    const bounds = idCardScene.getBoundingClientRect();
+    const anchorX = bounds.left + bounds.width / 2;
+    const anchorY = bounds.top + 13;
+    return Math.atan2(event.clientX - anchorX, event.clientY - anchorY) * (180 / Math.PI);
+  };
+  const setAngle = (value) => {
+    angle = clampAngle(value);
+    idCard.style.setProperty("--card-angle", `${angle}deg`);
+  };
+  const animateSwing = (time) => {
+    const delta = Math.min((time - previousMoveTime) / 1000, 0.032);
+    previousMoveTime = time;
+    angularVelocity += -600 * Math.sin(angle * (Math.PI / 180)) * delta;
+    angularVelocity *= Math.exp(-3.4 * delta);
+    setAngle(angle + angularVelocity * delta);
+
+    if (Math.abs(angle) < 0.08 && Math.abs(angularVelocity) < 0.5) {
+      setAngle(0);
+      angularVelocity = 0;
+      animationFrame = 0;
+      return;
+    }
+    animationFrame = window.requestAnimationFrame(animateSwing);
+  };
+  const startSwing = () => {
+    if (!animationFrame) {
+      previousMoveTime = performance.now();
+      animationFrame = window.requestAnimationFrame(animateSwing);
+    }
+  };
+  const releaseCard = (event) => {
+    if (event.pointerId !== activePointer) return;
+    activePointer = null;
+    idCard.classList.remove("is-dragging");
+    startSwing();
+  };
+
+  idCard.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0 && event.pointerType === "mouse") return;
+    if (animationFrame) {
+      window.cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+    }
+    activePointer = event.pointerId;
+    pointerStartAngle = pointerAngle(event);
+    cardStartAngle = angle;
+    angularVelocity = 0;
+    previousMoveTime = performance.now();
+    idCard.classList.add("is-dragging");
+    idCard.setPointerCapture(event.pointerId);
+    event.preventDefault();
+  });
+
+  idCard.addEventListener("pointermove", (event) => {
+    if (event.pointerId !== activePointer) return;
+    const nextAngle = clampAngle(cardStartAngle + pointerAngle(event) - pointerStartAngle);
+    const now = performance.now();
+    const delta = Math.max((now - previousMoveTime) / 1000, 0.001);
+    angularVelocity = Math.max(-120, Math.min(120, (nextAngle - angle) / delta));
+    previousMoveTime = now;
+    setAngle(nextAngle);
+  });
+
+  idCard.addEventListener("pointerup", releaseCard);
+  idCard.addEventListener("pointercancel", releaseCard);
+  idCard.addEventListener("lostpointercapture", releaseCard);
+  idCard.addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    angularVelocity += event.key === "ArrowLeft" ? -150 : 150;
+    startSwing();
+  });
+}
+
 // Utilidades para construir el contenido del diálogo sin inyectar HTML dinámico.
 const dialog = document.querySelector("#project-dialog");
 const dialogContent = document.querySelector("#dialog-content");
