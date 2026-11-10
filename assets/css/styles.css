@@ -259,6 +259,15 @@ a.contact-row:hover { padding-inline: 8px; }
 .story-block p { margin: 0; color: #afa49e; font-size: 11px; line-height: 1.8; }
 .dialog-note { margin: 25px 0 0; padding: 12px 15px; color: #bdb2ac; border-left: 3px solid var(--dialog-accent); background: rgba(255,255,255,.045); font-size: 10px; line-height: 1.7; }
 
+/* Background music */
+.audio-widget { position: fixed; right: 22px; bottom: 22px; z-index: 90; display: flex; align-items: center; gap: 12px; max-width: calc(100vw - 28px); padding: 9px 13px; border: 1px solid rgba(255,255,255,.18); color: var(--paper); background: rgba(17,14,13,.94); box-shadow: 0 8px 28px rgba(0,0,0,.32); backdrop-filter: blur(12px); }
+.audio-toggle { display: inline-flex; align-items: center; gap: 8px; padding: 0; border: 0; color: var(--paper); background: transparent; cursor: pointer; font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.audio-toggle-icon { display: grid; place-items: center; width: 30px; height: 30px; padding-left: 2px; border-radius: 50%; color: var(--ink); background: var(--orange); font-size: 10px; }
+.audio-toggle[aria-pressed="true"] .audio-toggle-icon { padding-left: 0; }
+.audio-volume { display: flex; align-items: center; gap: 7px; color: var(--orange); font-size: 14px; }
+.audio-volume input { width: 78px; height: 3px; accent-color: var(--orange); cursor: pointer; }
+.audio-status { color: #a99e98; font-size: 9px; white-space: nowrap; }
+
 /* Motion */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s cubic-bezier(.2,.7,.2,1); }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
@@ -302,6 +311,9 @@ a.contact-row:hover { padding-inline: 8px; }
   .id-card-hanger { width: min(252px, 78%); }
   .id-card-ribbon { height: 86px; }
   .hero-bottom { margin-top: 42px; }
+  .audio-widget { right: 12px; bottom: 12px; gap: 9px; padding: 8px 10px; }
+  .audio-volume input { width: 58px; }
+  .audio-status { font-size: 8px; }
   .intro-strip-inner { min-height: 58px; gap: 10px; }
   .intro-strip p { font-size: clamp(15px, 4vw, 19px); }
   .intro-strip span { font-size: 12px; }

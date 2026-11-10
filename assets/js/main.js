@@ -133,6 +133,49 @@ if (menuToggle && mainNav) {
   });
 }
 
+// Música de fondo, iniciada únicamente por interacción del usuario.
+const backgroundAudio = document.querySelector("#background-audio");
+const audioToggle = document.querySelector("#audio-toggle");
+const audioToggleIcon = audioToggle?.querySelector(".audio-toggle-icon");
+const audioVolume = document.querySelector("#audio-volume");
+const audioStatus = document.querySelector("#audio-status");
+
+if (backgroundAudio && audioToggle && audioToggleIcon && audioVolume && audioStatus) {
+  backgroundAudio.volume = Number(audioVolume.value);
+
+  const updateAudioControls = () => {
+    const isPlaying = !backgroundAudio.paused;
+    audioToggle.setAttribute("aria-pressed", String(isPlaying));
+    audioToggle.setAttribute("aria-label", isPlaying ? "Pausar música de fondo" : "Reproducir música de fondo");
+    audioToggleIcon.textContent = isPlaying ? "Ⅱ" : "▶";
+    audioStatus.textContent = isPlaying ? "Reproduciendo" : "En pausa";
+  };
+
+  audioToggle.addEventListener("click", async () => {
+    if (!backgroundAudio.paused) {
+      backgroundAudio.pause();
+      return;
+    }
+
+    try {
+      await backgroundAudio.play();
+    } catch (error) {
+      if (backgroundAudio.paused && error instanceof DOMException && error.name === "AbortError") return;
+      audioStatus.textContent = "No se pudo reproducir la pista";
+      console.error("No se pudo iniciar la música de fondo.", error);
+    }
+  });
+
+  backgroundAudio.addEventListener("play", updateAudioControls);
+  backgroundAudio.addEventListener("pause", updateAudioControls);
+  backgroundAudio.addEventListener("error", () => {
+    audioStatus.textContent = "No se pudo cargar la pista";
+  });
+  audioVolume.addEventListener("input", () => {
+    backgroundAudio.volume = Number(audioVolume.value);
+  });
+}
+
 // Aparición progresiva de los bloques al desplazarse.
 const revealItems = document.querySelectorAll(".reveal");
 if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
