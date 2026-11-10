@@ -144,7 +144,7 @@ if (backgroundAudio && audioToggle && audioToggleIcon && audioVolume && audioSta
   backgroundAudio.volume = Number(audioVolume.value);
 
   const updateAudioControls = () => {
-    const isPlaying = !backgroundAudio.paused;
+    const isPlaying = !backgroundAudio.paused && backgroundAudio.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA;
     audioToggle.setAttribute("aria-pressed", String(isPlaying));
     audioToggle.setAttribute("aria-label", isPlaying ? "Pausar música de fondo" : "Reproducir música de fondo");
     audioToggleIcon.textContent = isPlaying ? "Ⅱ" : "▶";
@@ -152,23 +152,35 @@ if (backgroundAudio && audioToggle && audioToggleIcon && audioVolume && audioSta
   };
 
   audioToggle.addEventListener("click", async () => {
+    if (window.location.protocol === "file:") {
+      audioStatus.textContent = "Abre con Live Server";
+      return;
+    }
+
     if (!backgroundAudio.paused) {
       backgroundAudio.pause();
       return;
     }
 
+    audioStatus.textContent = "Cargando música…";
     try {
       await backgroundAudio.play();
     } catch (error) {
       if (backgroundAudio.paused && error instanceof DOMException && error.name === "AbortError") return;
+      audioToggle.setAttribute("aria-pressed", "false");
+      audioToggle.setAttribute("aria-label", "Reproducir música de fondo");
+      audioToggleIcon.textContent = "▶";
       audioStatus.textContent = "No se pudo reproducir la pista";
       console.error("No se pudo iniciar la música de fondo.", error);
     }
   });
 
-  backgroundAudio.addEventListener("play", updateAudioControls);
+  backgroundAudio.addEventListener("playing", updateAudioControls);
   backgroundAudio.addEventListener("pause", updateAudioControls);
   backgroundAudio.addEventListener("error", () => {
+    audioToggle.setAttribute("aria-pressed", "false");
+    audioToggle.setAttribute("aria-label", "Reproducir música de fondo");
+    audioToggleIcon.textContent = "▶";
     audioStatus.textContent = "No se pudo cargar la pista";
   });
   audioVolume.addEventListener("input", () => {
